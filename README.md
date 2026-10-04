@@ -31,7 +31,7 @@ resultados_iocs.xlsx      # Archivo de salida con los resultados (generado autom
 Antes de ejecutar el script, asegúrate de tener instaladas las siguientes dependencias de Python:
 
 ```bash
-pip install requests pandas openpyxl matplotlib seaborn
+pip install -r requirements.txt
 ```
 
 También necesitas:
@@ -43,10 +43,19 @@ También necesitas:
 
 ## 🛠️ Configuración
 
-Edita las siguientes constantes en el script `reputacion_ioc.py` antes de ejecutar:
+La API key **no se escribe en el código**: el script la lee desde la variable de entorno `VT_API_KEY`.
+
+```bash
+# Linux / macOS / WSL
+export VT_API_KEY="tu_api_key_de_virustotal"
+
+# Windows (PowerShell)
+$env:VT_API_KEY="tu_api_key_de_virustotal"
+```
+
+Opcionalmente, puedes ajustar estas constantes en `reputacion_ioc.py`:
 
 ```python
-API_KEY = "TU_API_KEY_AQUI"             # Reemplaza con tu clave de VirusTotal
 INPUT_FILE = "indicadores.txt"          # Ruta al archivo de entrada
 OUTPUT_FILE = "resultados_iocs.xlsx"    # Nombre del archivo de salida
 MAX_THREADS = 5                         # Número de hilos para ejecución en paralelo

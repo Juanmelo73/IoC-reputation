@@ -9,7 +9,7 @@ from concurrent.futures import ThreadPoolExecutor
 
 """# Definicion de constantes"""
 
-API_KEY = "API KEY"  # Reemplaza con tu API key
+API_KEY = os.getenv("VT_API_KEY")  # API key de VirusTotal, leída desde la variable de entorno VT_API_KEY
 INPUT_FILE = "indicadores.txt"  # Archivo con los IOCs a analizar
 OUTPUT_FILE = "resultados_iocs.xlsx"  # Archivo de salida con los resultados
 MAX_THREADS = 5  # Número máximo de hilos para procesamiento paralelo
@@ -242,6 +242,10 @@ class IOCAnalyzer:
       print(f"Resultados guardados en {output_file}")
 
 def main():
+    if not API_KEY:
+        print("Error: define la variable de entorno VT_API_KEY con tu API key de VirusTotal.")
+        return
+
     print("Iniciando análisis de indicadores de compromiso...")
 
     # Usar las constantes definidas al principio del archivo
